@@ -17,22 +17,7 @@ spec:
           image: 821421640977.dkr.ecr.ap-south-1.amazonaws.com/frontend/frontend:latest
           ports:
             - containerPort: 80
----
-# NodePort for Minikube
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-nodeport
-spec:
-  selector:
-    app: frontend
-  type: NodePort
-  ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 30080
----
-# LoadBalancer for AWS EKS
+
 apiVersion: v1
 kind: Service
 metadata:
