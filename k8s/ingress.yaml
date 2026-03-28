@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: library-app-ingress
+  namespace: dhruv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+ 
+      # FRONTEND
+      - path: /dhruv
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+ 
+      # USER SERVICE
+      - path: /dhruv/api/users
+        pathType: Prefix
+        backend:
+          service:
+            name: user-service
+            port:
+              number: 80
+ 
+      # BOOK SERVICE
+      - path: /dhruv/api/books
+        pathType: Prefix
+        backend:
+          service:
+            name: book-service
+            port:
+              number: 80
+ 
+      # BORROW SERVICE
+      - path: /dhruv/api/borrow
+        pathType: Prefix
+        backend:
+          service:
+            name: borrow-service
+            port:
+              number: 80
+ 
+      # NOTIFICATION SERVICE
+      - path: /dhruv/api/notifications
+        pathType: Prefix
+        backend:
+          service:
+            name: notification-service
+            port:
+              number: 80
